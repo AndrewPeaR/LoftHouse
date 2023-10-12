@@ -10,3 +10,57 @@ navBtn.onclick = function() {
     nav.classList.toggle('header__top-row--mobile');
     document.body.classList.toggle('no-scroll');
 }
+
+// Yandex Map
+
+// Функция ymaps.ready() будет вызвана, когда
+// загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+ymaps.ready(init);
+function init(){
+    // Создание карты.
+    var map = new ymaps.Map("map", {
+        // Координаты центра карты.
+        // Порядок по умолчанию: «широта, долгота».
+        // Чтобы не определять координаты центра карты вручную,
+        // воспользуйтесь инструментом Определение координат.
+        center: [59.943544, 30.338928],
+        // Уровень масштабирования. Допустимые значения:
+        // от 0 (весь мир) до 19.
+        zoom: 16
+    });
+
+    // Кастомная метка
+    var myPlacemark = new ymaps.Placemark(
+        [59.943544, 30.338928], 
+        {
+            balloonContent: 
+                `
+                <div class="balloon">
+                    <div class="balloon__address">Наб. реки Фонтанки 10-15</div>
+                    <div class="balloon__contacts">
+                        <a href="tel:+78121234567">+8 (812) 123-45-67</a>
+                    </div>
+                </div>
+                `
+        }, 
+        {
+        iconLayout: 'default#image',
+        iconImageHref: './../img/map/location-pin.svg',
+        icon_imagesize: [40, 40],
+        iconImageOffset: [-17, -40]
+    });
+
+    map.controls.remove('geolocationControl'); // удаляем геолокацию
+	map.controls.remove('searchControl'); // удаляем поиск
+	map.controls.remove('trafficControl'); // удаляем контроль трафика
+	map.controls.remove('typeSelector'); // удаляем тип
+
+	// map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+	// map.controls.remove('zoomControl'); // удаляем контрол зуммирования
+	map.controls.remove('rulerControl'); // удаляем контрол правил
+	map.behaviors.disable(['scrollZoom']); // отключаем скролл карты (опционально)
+
+    // Размещение геообъекта на карте.
+    map.geoObjects.add(myPlacemark);
+    myPlacemark.balloon.open()
+}
