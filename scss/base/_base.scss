@@ -20,8 +20,38 @@ a{
     margin: 0 auto;
     max-width: 1140px;
     padding: 0 15px;
+
+    &--sm{
+        max-width: 840px;
+    }
 }
+
 
 .text-right{
     text-align: right;
+}
+
+.visually-hidden{
+    height: 1px;
+    overflow: hidden;
+    width: 1px;
+
+    position: absolute;
+
+    clip: (1px 1px 1px 1px);
+    clip: (1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+
+    white-space: nowrap;
+}
+
+.none{
+    display: none !important; 
+}
+
+.title-2{
+    font-size: 36px;
+    font-family: $font-accent;
+    color: $accent;
+    font-weight: 700;
 }
