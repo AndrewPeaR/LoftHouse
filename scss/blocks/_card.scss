@@ -50,6 +50,7 @@
     position: relative;
     z-index: 5;
     transition: all 0.2s ease-in;
+    width: 100%;
 }
 
 .card:hover .card__img{
@@ -65,4 +66,10 @@
     bottom: 44px;
 
     font-size: 24px;
+
+    @include mediaTablet {
+        font-size: 20px;
+        left: 30px;
+        bottom: 28px;
+    }
 }
